@@ -57,6 +57,9 @@ models/*.pkl
 models/*.joblib
 models/*.h5
 models/*.tf
+!models/halo_class_model.pkl
+!models/velocity_regressor.pkl
+!models/earth_directed_model.pkl
 
 # Logs
 *.log
