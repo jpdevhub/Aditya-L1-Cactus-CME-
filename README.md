@@ -13,7 +13,8 @@ This project develops an advanced multi-class CME prediction system that combine
 ### 🎯 Key Features
 - **🎯 Multi-class CME Classification**: Halo CME classification on a scale of 1-4
 - **⚡ Real-time Monitoring**: Live CME arrival prediction system  
-- **🎲 High Accuracy**: Achieved >85% accuracy in CME arrival time prediction
+- **� Interactive Web App**: Modern Streamlit interface for real-time predictions
+- **�🎲 High Accuracy**: Achieved >85% accuracy in CME arrival time prediction
 - **🔧 Comprehensive Feature Engineering**: 50+ engineered features including statistical trends
 - **🚀 Operational Deployment**: Ready for integration with space weather centers
 - **📊 Rich Visualizations**: 20+ scientific plots and analysis figures
@@ -53,9 +54,12 @@ ISRO_CME_Prediction/
 │   ├── cme_events_time_series.png
 │   ├── correlation_heatmap.png
 │   └── cme_feature_pairplot.png
+├── 🌐 app.py                        # Interactive web application
+├── 🚀 run_app.sh                    # Web app launcher script
 ├── 📄 main.tex                      # LaTeX manuscript source
 ├── 📋 requirements.txt               # Python dependencies
 ├── 📊 DATASET_INFO.md               # Dataset overview
+├── 📖 WEB_APP_README.md             # Web application guide
 └── 📖 README.md                     # This file
 ```
 
@@ -66,6 +70,7 @@ ISRO_CME_Prediction/
 - pandas, numpy, scikit-learn
 - matplotlib, seaborn
 - cdflib (for CDF file processing)
+- streamlit (for web app)
 
 ### Installation
 ```bash
@@ -73,6 +78,27 @@ git clone https://github.com/your-username/ISRO_CME_Prediction.git
 cd ISRO_CME_Prediction
 pip install -r requirements.txt
 ```
+
+## 🌐 Quick Start - Web Application
+
+### Launch the Interactive CME Prediction App
+```bash
+# Option 1: Using launcher script
+./run_app.sh
+
+# Option 2: Direct command
+streamlit run app.py
+```
+
+**Access the web app at**: http://localhost:8501
+
+### Web App Features
+- **🎯 Real-time CME Prediction**: Input solar wind parameters and get instant predictions
+- **📊 Interactive Visualizations**: Radar charts and dynamic metrics
+- **🎨 Modern UI**: Responsive design with gradient styling
+- **⚡ Fast Performance**: Cached model loading and efficient predictions
+
+See [WEB_APP_README.md](WEB_APP_README.md) for detailed web application documentation.
 
 ## 📊 Datasets & Results
 
@@ -140,17 +166,10 @@ pip install -r requirements.txt
 
 ## 🚀 Usage
 
-### Training a Model
-```python
-from src.ml_pipeline.cme_ml_pipeline import CMEMLPipeline
-
-# Initialize pipeline
-pipeline = CMEMLPipeline()
-
-# Load data and train
-pipeline.load_data('datasets/processed/balanced_cme_prediction_dataset_final.csv')
-pipeline.train_model()
-pipeline.save_model('models/cme_model.pkl')
+### Training Models
+```bash
+# Run the training script to train and save all models
+python3 train_models.py
 ```
 
 ### Real-time Monitoring
@@ -169,15 +188,17 @@ monitor.start_monitoring()
 import joblib
 import pandas as pd
 
-# Load trained model
-model = joblib.load('models/best_cme_model.pkl')
+# Load trained models
+halo_model = joblib.load('models/halo_class_model.pkl')
+velocity_model = joblib.load('models/velocity_regressor.pkl')
+earth_model = joblib.load('models/earth_directed_model.pkl')
 
 # Load new data
 new_data = pd.read_csv('datasets/processed/new_solar_wind_data.csv')
 
 # Make predictions
-predictions = model.predict(new_data)
-probabilities = model.predict_proba(new_data)
+halo_pred = halo_model['model'].predict(halo_model['scaler'].transform(new_data))
+velocity_pred = velocity_model['model'].predict(velocity_model['scaler'].transform(new_data))
 ```
 
 ## 📊 Comprehensive Visualizations
