@@ -44,12 +44,7 @@ Exploratory data analysis visualizations showing data quality, coverage, and bas
 ### `feature_analysis/`
 Feature importance, selection, and engineering analysis visualizations.
 
-## 🎯 Key Visualizations for Publications
 
-### Primary Figures (in `final_paper_figures/`)
-1. **`cme_events_time_series.png`**: Main temporal analysis showing CME event distribution
-2. **`correlation_heatmap.png`**: Feature correlation analysis demonstrating data relationships
-3. **`cme_feature_pairplot.png`**: Multi-dimensional feature analysis for classification
 
 ## 📊 Visualization Types
 
@@ -128,15 +123,8 @@ All visualizations undergo:
 3. **Physics Review**: Domain expert validation of physical interpretations
 4. **Visual Standards**: Adherence to publication guidelines
 
-## 📝 Usage Guidelines
-
-### For Publications
-- Use figures from `final_paper_figures/` for manuscripts
-- Ensure proper attribution and data source citation
-- Follow journal-specific formatting requirements
-
-### For Presentations
-- High-resolution versions available for conference presentations
+### Usage
+- High-resolution versions available for presentations
 - Consider audience when selecting technical detail level
 - Use consistent color schemes across presentation figures
 
