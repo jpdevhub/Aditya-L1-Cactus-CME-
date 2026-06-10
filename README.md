@@ -13,8 +13,8 @@ This project develops an advanced multi-class CME prediction system that combine
 ### 🎯 Key Features
 - **🎯 Multi-class CME Classification**: Halo CME classification on a scale of 1-4
 - **⚡ Real-time Monitoring**: Live CME arrival prediction system  
-- **� Interactive Web App**: Modern Streamlit interface for real-time predictions
-- **�🎲 High Accuracy**: Achieved >85% accuracy in CME arrival time prediction
+- **💻 Interactive Web App**: Modern Streamlit interface for real-time predictions
+- **🎲 High Accuracy**: Achieved >85% accuracy in CME arrival time prediction
 - **🔧 Comprehensive Feature Engineering**: 50+ engineered features including statistical trends
 - **🚀 Operational Deployment**: Ready for integration with space weather centers
 - **📊 Rich Visualizations**: 20+ scientific plots and analysis figures
@@ -28,39 +28,47 @@ ISRO_CME_Prediction/
 │   ├── raw/                          # Original datasets from APEX SWISS & CACTUS
 │   ├── processed/                    # Cleaned and processed datasets
 │   ├── ml_ready/                     # ML-ready feature datasets
-│   │   ├── mag_ml_integrated_dataset.csv         # 🎯 Final integrated dataset (100K+ samples)
-│   │   └── balanced_cme_prediction_dataset_final.csv  # ⚖️ Balanced training dataset
-│   └── DATASET_README.md             # 📖 Comprehensive dataset documentation
+│   └── DATASET_README.md             # Comprehensive dataset documentation
 ├── 💻 src/
 │   ├── data_processing/              # Data cleaning and preprocessing scripts
+│   │   ├── clean_balanced_dataset.py
+│   │   ├── create_final_dataset.py
+│   │   └── merge_cme_datasets.py
 │   ├── ml_pipeline/                  # Machine learning pipeline & training
-│   │   └── train_ml_models.py       # 🤖 Main ML training script
+│   │   ├── cme_ml_pipeline.py
+│   │   └── train_ml_models.py
 │   ├── monitoring/                   # Real-time monitoring systems
-│   └── analysis/                    # Analysis and visualization tools
-│       └── create_visualization_plots.py  # 📈 Visualization generation
+│   │   ├── cme_real_time_monitor.py
+│   │   └── test_ace_wind.py
+│   └── analysis/                     # Analysis and visualization tools
+│       ├── cme_ml_dataset_visualizer.py
+│       ├── comprehensive_data_integrator.py
+│       ├── create_visualization_plots.py
+│       ├── final_cme_detector.py
+│       └── ml_cme_prediction_dataset_creator.py
 ├── 🤖 models/                        # Trained ML models and model artifacts
+│   ├── earth_directed_model.pkl
+│   ├── halo_class_model.pkl
+│   └── velocity_regressor.pkl
 ├── 📊 visualizations/                # Comprehensive visualization suite
-│   ├── cme_analysis/               # CME-specific analysis plots
-│   │   ├── images/                  # 🖼️ Core CME visualizations (8 plots)
-│   │   ├── plots/                   # 📈 Statistical analysis plots (8 plots)  
-│   │   └── domain_plots/            # 🔬 Physics-based analysis (6 plots)
-│   ├── ml_performance/             # Model performance visualizations
-│   ├── data_exploration/           # Dataset exploration plots
-│   ├── feature_analysis/           # Feature importance analysis
-│   └── VISUALIZATION_README.md     # 📖 Visualization documentation
-├── 📑 docs/                         # Documentation and research papers
-│   └── IEEE_Standard_Research_Paper_CME_Prediction_FINAL.md  # 📄 Research paper
-├── 🖼️ final_paper_figures/          # Key figures for publications
-│   ├── cme_events_time_series.png
-│   ├── correlation_heatmap.png
-│   └── cme_feature_pairplot.png
-├── 🌐 app.py                        # Interactive web application
-├── 🚀 run_app.sh                    # Web app launcher script
-├── 📄 main.tex                      # LaTeX manuscript source
+│   ├── cme_analysis/                 # CME-specific analysis plots
+│   ├── ml_performance/               # Model performance visualizations
+│   ├── data_exploration/             # Dataset exploration plots
+│   ├── feature_analysis/             # Feature importance analysis
+│   └── VISUALIZATION_README.md       # Visualization documentation
+├── 📑 docs/                          # Documentation and reports
+│   ├── analysis_reports/             # Comprehensive analysis summaries
+│   │   └── FINAL_COMPREHENSIVE_ANALYSIS_SUMMARY.md
+│   └── technical_docs/               # Technical dataset specifications
+│       ├── ML_Dataset_Documentation.md
+│       └── README_Combined_Dataset.md
+├── 🌐 app.py                         # Interactive web application
+├── 🚀 run_app.sh                     # Web app launcher script
+├── 🤖 train_models.py                # Main ML training script
 ├── 📋 requirements.txt               # Python dependencies
-├── 📊 DATASET_INFO.md               # Dataset overview
-├── 📖 WEB_APP_README.md             # Web application guide
-└── 📖 README.md                     # This file
+├── 📊 DATASET_INFO.md                # Dataset overview
+├── 📖 WEB_APP_README.md              # Web application guide
+└── 📖 README.md                      # This file
 ```
 
 ## 🛠️ Installation & Setup
@@ -213,8 +221,8 @@ Our project includes **22 high-quality visualizations** organized by analysis ty
 - And 4 more detailed analysis plots...
 
 ### 📈 Statistical Analysis (`visualizations/cme_analysis/plots/`)
-- **`correlation_heatmap.png`** - Feature correlation matrix (**Key Paper Figure**)
-- **`cme_feature_pairplot.png`** - Multi-dimensional relationships (**Key Paper Figure**)
+- **`correlation_heatmap.png`** - Feature correlation matrix
+- **`cme_feature_pairplot.png`** - Multi-dimensional relationships
 - **`cme_vs_noncme_distribution.png`** - Comparative analysis
 - And 5 more statistical visualizations...
 
@@ -222,9 +230,6 @@ Our project includes **22 high-quality visualizations** organized by analysis ty
 - **`cme_halo_class_distribution.png`** - Halo CME classification
 - **`earth_directed_distribution.png`** - Earth-impact analysis
 - And 4 more domain-specific plots...
-
-### 📑 Publication Figures (`final_paper_figures/`)
-Ready-to-use figures for scientific publications and presentations.
 
 ## 📚 Documentation
 
@@ -272,21 +277,3 @@ For questions about this research:
 - Extreme event specialized modeling
 - Multi-mission cross-validation framework
 - Real-time space weather center deployment
-
----
-
-**Citation**: If you use this work in your research, please cite:
-```bibtex
-@inproceedings{singh2026cme,
-  title={A machine learning framework for CME prediction from L1 solar wind observations},
-  author={Singh, K. and Jha, K. K. and Das, B. K. and Biswas, B. D.},
-  booktitle={Proc. 1st Int. Conf. on Computational Intelligence and Cyber Physical Systems (CICPS 2026)},
-  address={Kolkata, India},
-  month={Jan. 2--3},
-  year={2026},
-  note={To be published in the Springer Nature LNNS Book Series (Scopus indexed)}
-}
-```
-
-**IEEE Format**:
-K. Singh, K. K. Jha, B. K. Das, and B. D. Biswas, "A machine learning framework for CME prediction from L1 solar wind observations," in *Proc. 1st Int. Conf. on Computational Intelligence and Cyber Physical Systems (CICPS 2026)*, Kolkata, India, Jan. 2–3, 2026, To be published in the Springer Nature LNNS Book Series (Scopus indexed).
